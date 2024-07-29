@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='c.css') }}">
+    <title>Fingerprint Checker</title>
+</head>
+<body>
+    <div class="container">
+        <div class="main-box">
+            <h1>Fingerprint Checker</h1>
+            <form action="/upload" method="POST" enctype="multipart/form-data">
+                <label for="image-upload" class="custom-file-upload">
+                    <span>Upload Fingerprint Image</span>
+                </label>
+                <input type="file" name="file" id="image-upload" accept="image/*" class="hidden-file-input">
+                <div id="image-container">
+                    <img id="selected-image" alt="Selected Image" class="hidden">
+                    <button id="remove-image" class="cross-button hidden">✖</button>
+                </div>
+                <button type="submit" id="check-button">Check Fingerprint</button>
+            </form>
+            <div id="result">
+                <!-- ... (previous HTML code) ... -->
+                <div id="result">
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            <div class="flash-messages">
+                                {% for message in messages %}
+                                    <div class="flash-message">{{ message }}</div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% endwith %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='c.js') }}"></script>
+</body>
+</html>
